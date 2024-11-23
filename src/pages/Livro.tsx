@@ -9,7 +9,6 @@ const LivroManager = () => {
   const [editing, setEditing] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
 
-  // Função para buscar livro
   const fetchlivro = async () => {
     try {
       const response = await api.get("/livro");
@@ -19,12 +18,10 @@ const LivroManager = () => {
     }
   };
 
-  // Carregar livro da API ao montar o componente
   useEffect(() => {
     fetchlivro();
   }, []);
 
-  // Criar ou atualizar livro
   const handleSubmit = async () => {
     if (editing) {
       try {
@@ -46,21 +43,19 @@ const LivroManager = () => {
     setAno("");
     setEditing(false);
     setEditingId(null);
-    fetchlivro(); // Recarregar os livro após criar ou atualizar
+    fetchlivro();
   };
 
-  // Deletar livro
   const handleDelete = async (id: string) => {
     try {
       await api.delete(`/livro/${id}`);
       alert("Livro deletado!");
-      fetchlivro(); // Recarregar os livro após deletar
+      fetchlivro();
     } catch (error) {
       console.error("Erro ao deletar livro", error);
     }
   };
 
-  // Editar livro
   const handleEdit = (livro: any) => {
     setTitulo(livro.titulo);
     setAutor(livro.autor);
@@ -70,11 +65,9 @@ const LivroManager = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold mb-6">Gerenciador de livro</h1>
-
-      {/* Formulário de Livro */}
+    <div className="flex  items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-lg shadow-md w-80">
+        <h1 className="text-3xl font-bold mb-6">Gerenciador de livro</h1>
         <div className="mb-4">
           <label className="block mb-1 font-medium">Título</label>
           <input
@@ -113,8 +106,7 @@ const LivroManager = () => {
         </button>
       </div>
 
-      {/* Lista de livro */}
-      <div className="mt-8 w-80">
+      <div className="flex-col mx-4">
         <h2 className="text-2xl font-bold mb-4">livro Cadastrados</h2>
         <ul>
           {livro.map((livro) => (
