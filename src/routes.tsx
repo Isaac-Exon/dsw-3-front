@@ -1,11 +1,18 @@
 import { Routes, Route } from "react-router-dom";
-import Calculator from "./pages/Livro";
+
+import LivroManager from "./pages/Livro";
+import CompraManager from "./pages/Compras";
+import Navbar from "./components/Menu";
 
 function Rotas() {
   return (
-    <Routes>
-      <Route path="/" element={<Calculator />} />
-    </Routes>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/Livros" element={<LivroManager />} />
+        <Route path="/Compras" element={<CompraManager />} />
+      </Routes>
+    </div>
   );
 }
 
